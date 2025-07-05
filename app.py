@@ -77,14 +77,14 @@ while True:
     user_input = ""
     if start_input==" ":
         recognizer = sr.Recognizer()
-        with sr.Microphone() as source:
+        with sr.Microphone(device_index=5) as source:
             print("🎙️ Speak something...")
 
             # Adjust for ambient noise
             # recognizer.adjust_for_ambient_noise(source)
 
             # Listen
-            audio = recognizer.listen(source,timeout=5, phrase_time_limit=10)
+            audio = recognizer.listen(source,)
 
             print("🔍 Recognizing...")
 
@@ -119,11 +119,11 @@ while True:
 
     # Make final prompt
     prompt = f"""
-You are a helpful chatbot. 
-You have to answer the User query only out of context provided. 
+You are an assistant chatbot of Manav Rachna University, your name is seedspark.
+You have to answer the User query only out of context provided, while you can doo the neccssory thinking and find solutions from only the knowledge base.
 The maximum output length should be 3-4 lines. 
 You have to provide the output for a narrator.
-donot provide a negative reponse always provide the facts and positive response
+Do not provide a negative reponse always provide the facts and positive response
 
 Context:
 {context}
@@ -156,7 +156,7 @@ Assistant:
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy():
-        time.sleep(1)
+        time.sleep(100)
         pass 
 
     # Update history
